@@ -4,20 +4,20 @@ function buildMetadata(sample) {
 
     // Use `d3.json` to fetch the metadata for a sample
     d3.json(`/metadata/${sample}`).then((received_metadata) => {
-    // Use d3 to select the panel with id of `#sample-metadata`
-    var my_panel = d3.select("#sample-metadata");
-    // Use `.html("") to clear any existing metadata
-    my_panel.html("");
-    // Use `Object.entries` to add each key and value pair to the panel
-    Object.entries(received_metadata).forEach(([key,value]) => {
-        my_panel.append("p").html(`${key} : ${value}`);
-        
-    });
-    // Hint: Inside the loop, you will need to use d3 to append new
-    // tags for each key-value in the metadata.
+        // Use d3 to select the panel with id of `#sample-metadata`
+        var my_panel = d3.select("#sample-metadata");
+        // Use `.html("") to clear any existing metadata
+        my_panel.html("");
+        // Use `Object.entries` to add each key and value pair to the panel
+        Object.entries(received_metadata).forEach(([key, value]) => {
+            my_panel.append("p").html(`${key} : ${value}`);
 
-    // BONUS: Build the Gauge Chart
-    // buildGauge(data.WFREQ);
+        });
+        // Inside the loop, I need to use d3 to append new
+        // tags for each key-value in the metadata.
+
+        // Build the Gauge Chart
+        buildGauge(received_metadata.WFREQ);
     });
 }
 
@@ -44,7 +44,7 @@ function buildCharts(sample) {
                     text: 'OTU IDS',
                     font: {
                         family: 'Courier New, monospace',
-                        size: 18                        
+                        size: 18
                     }
                 },
             },
@@ -54,7 +54,7 @@ function buildCharts(sample) {
                     text: 'Sample Values',
                     font: {
                         family: 'Courier New, monospace',
-                        size: 18                        
+                        size: 18
                     }
                 },
             },
